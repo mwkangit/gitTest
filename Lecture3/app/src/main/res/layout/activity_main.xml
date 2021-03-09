@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:gravity="bottom"
     app:umanoDragView="@id/dragView"
-    app:umanoScrollableView="@id/listView"
+    app:umanoScrollableView="@id/recyclerView"
     app:umanoPanelHeight="70dp"
     app:umanoOverlay="false"
     app:umanoParallaxOffset="200dp"
@@ -65,15 +65,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             />
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp">
-
-        </ListView>
 
     </LinearLayout>
 
