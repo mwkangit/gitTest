@@ -10,7 +10,7 @@
     app:umanoScrollableView="@id/recyclerView"
     app:umanoPanelHeight="70dp"
     app:umanoOverlay="false"
-    app:umanoParallaxOffset="200dp"
+    app:umanoParallaxOffset="0dp"
     app:umanoShadowHeight="10dp">
     <!-- gravity 를 bottom으로 하면 아래에서 위로 드래그, top으로 하면 위에서 아래로 드래그 할 수 있다.
          umanoDragView 드래그 해서 보여줄 view를 선택
@@ -19,25 +19,31 @@
          umanoShadowHeight 는 슬라이딩 패널 윗부분에 그림자 효과
          umanoOverlay 를 false로 해주면 슬라이딩 패널이 위로 보이고 뒷 부분은 반투명하게 보인다. -->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Main Content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/lay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button" />
 
+
+        </LinearLayout>
+
+
+    </LinearLayout>
     <!-- 올라오는 화면을 꽉 채우고 싶다면 match_parent, 내용물 만큼만 보이고 뒷 배경이 반투명처리로 보이고 싶다면 wrap_content-->
     <LinearLayout
         android:id="@+id/dragView"
