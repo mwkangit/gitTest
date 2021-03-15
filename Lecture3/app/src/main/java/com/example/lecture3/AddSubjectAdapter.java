@@ -15,20 +15,20 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.CustomViewHolder> {
+public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.CustomViewHolder> {
 
     private ArrayList<Subject> arrayList;
     int counter_click = 0;
     String new_button_name = null;
 
-    public SubjectAdapter(ArrayList<Subject> arrayList) {
+    public AddSubjectAdapter(ArrayList<Subject> arrayList) {
         this.arrayList = arrayList;
     }
 
     @NonNull
     @Override
     /// listview 메뉴가 처음 생성될 때 생명주기를 뜻한다
-    public SubjectAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AddSubjectAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.subject_item, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
 
@@ -37,7 +37,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.CustomVi
 
     @Override
     ///실제 추가 될 때에 대한 생명주기
-    public void onBindViewHolder(@NonNull SubjectAdapter.CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AddSubjectAdapter.CustomViewHolder holder, int position) {
         ///imageview를 생성한 애들을 가져온다
 
         holder.subject_name.setText(arrayList.get(position).getSubject());
