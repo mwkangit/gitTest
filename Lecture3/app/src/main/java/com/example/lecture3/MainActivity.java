@@ -47,11 +47,15 @@ public class MainActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         /// 아까 만든 MainAdapter을 가져와서 arrayList에 값을 넣어 준 것이다
 
-        Subject subject = new Subject("잘생겨지는법", "강민우","폐강");
-        Subject subject2 = new Subject("무야호", "무도","알래스카");
+        Subject subject = new Subject("Tears", "소찬휘","자ㅏㄴ인한 여좌ㅏ라");
+        Subject subject2 = new Subject("G", "S","25");
+        Subject subject3 = new Subject("곱창", "몹시","당긴다");
+        Subject subject4 = new Subject("무", "야","호날두");
 
         arrayList.add(subject);
         arrayList.add(subject2);
+        arrayList.add(subject3);
+        arrayList.add(subject4);
 
         subjectAdapter = new SubjectAdapter((arrayList));
         subjectAdapter.notifyDataSetChanged();
@@ -89,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
                     addsubjectAdapter.notifyDataSetChanged();
                 }else{ // 이미 과목이 있으면 Toast 띄운다
-                    Toast.makeText(getApplicationContext(),add_subject + "는 이미 선택하셨어요!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),add_subject + "는 이미 선택했잖아여!", Toast.LENGTH_SHORT).show();
                 }
 
 

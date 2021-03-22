@@ -76,7 +76,7 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
 
                 ad.setIcon(R.mipmap.ic_launcher);  //다이얼로그 창에서 이미지 뷰로 조그맣게 띄울 아이콘
                 ad.setTitle("삭제하시겠습니까?");
-                ad.setMessage("강민우는 킹카인가?"); //보통 질문을 한다
+                ad.setMessage("리얼리?"); //보통 질문을 한다
 
 
                 //긍정적인 버튼
