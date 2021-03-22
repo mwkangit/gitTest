@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
 
-    private  SubjectAdapter subjectAdapter2;
+    private ArrayList<AddSubject> arrayList2;
+    private  AddSubjectAdapter addsubjectAdapter;
     private RecyclerView recyclerView2;
     private LinearLayoutManager linearLayoutManager2;
 
@@ -60,16 +61,30 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        add_button = (Button) findViewById(R.id.add_button);
         recyclerView2 = (RecyclerView)findViewById(R.id.recyclerView2);
-        linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager2 = new LinearLayoutManager(this);
         recyclerView2.setLayoutManager(linearLayoutManager2); ///방금 만든 layoutmanager을 recyclerview로 넣어줘라
 
+        arrayList2 = new ArrayList<>();
 
-        subjectAdapter = new SubjectAdapter((arrayList));
-        subjectAdapter.notifyDataSetChanged();
+        addsubjectAdapter = new AddSubjectAdapter(arrayList2);
+        recyclerView2.setAdapter(addsubjectAdapter); ///담아져있는 데이터를 recyclerView에 담아줘라
 
-        recyclerView.setAdapter(subjectAdapter); ///담아져있는 데이터를 recyclerView에 담아줘라
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                String add_subject = subjectAdapter.new_button_name;
+                String add_professor = subjectAdapter.new_button_professor;
+                AddSubject addSubject = new AddSubject(add_subject,add_professor);
+                arrayList2.add(addSubject);
+
+                addsubjectAdapter.notifyDataSetChanged();
+
+
+
+            }
+        });
 
 
 
@@ -78,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        DisplayMetrics dm = getResources().getDisplayMetrics(); // dp 형식의 변수를 만든다
+        /*DisplayMetrics dm = getResources().getDisplayMetrics(); // dp 형식의 변수를 만든다
         int size = Math.round(20 * dm.density); // dp 의 값을 정의한다
 
         add_button = (Button) findViewById(R.id.add_button);
@@ -114,7 +129,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "수업은 10개까지만 생성 가능합니다", Toast.LENGTH_SHORT).show(); // 버튼을 11개 이상 만들려고 할 때 Toast 해준다
                 }
             }
-        });
+        });*/
+
+
 
 
 

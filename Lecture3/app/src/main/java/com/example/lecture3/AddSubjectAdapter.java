@@ -17,11 +17,9 @@ import java.util.ArrayList;
 
 public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.CustomViewHolder> {
 
-    private ArrayList<Subject> arrayList;
-    int counter_click = 0;
-    String new_button_name = null;
+    private ArrayList<AddSubject> arrayList;
 
-    public AddSubjectAdapter(ArrayList<Subject> arrayList) {
+    public AddSubjectAdapter(ArrayList<AddSubject> arrayList) {
         this.arrayList = arrayList;
     }
 
@@ -29,7 +27,7 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
     @Override
     /// listview 메뉴가 처음 생성될 때 생명주기를 뜻한다
     public AddSubjectAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.subject_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.addsubject_item, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
 
         return holder;
@@ -42,7 +40,6 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
 
         holder.subject_name.setText(arrayList.get(position).getSubject());
         holder.professor_name.setText(arrayList.get(position).getProfessor());
-        holder.time_time.setText(arrayList.get(position).getTime());
         ///listview가 클릭이 됬을 때와 long click이 됬을 때를 나타내 줄 수 있다
         holder.itemView.setTag(position); /// position값을 가져온다
 
@@ -51,27 +48,15 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
             @Override
             public void onClick(View v) {
                 String curName = holder.subject_name.getText().toString(); ///리사이클러 아이템 중 클릭한 친구의 이름을 가져온다
-                Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show(); /// curName을 짧은 시간동안 띄울 것이다
-                new_button_name = holder.subject_name.getText().toString();
-                counter_click = (counter_click + 1) % 2;
-                if(counter_click == 0){
-                    holder.add_btn.setVisibility(View.INVISIBLE);
-                }
-                else{
-                    holder.add_btn.setVisibility(View.VISIBLE);
-                }
+                Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show(); /// curName을 짧은 시간동안 띄울 것이다;
+
 
 
 
             }
         });
 
-        holder.add_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new_button_name = holder.subject_name.getText().toString();
-            }
-        });
+
 
 
 
@@ -107,19 +92,16 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
 
         protected TextView subject_name;
         protected TextView professor_name;
-        protected TextView time_time;
-        protected Button add_btn;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             this.subject_name =(TextView) itemView.findViewById(R.id.subject_name); ///activity형 클래스 파일이 아니기 때문에 itemview를 가져온다
             this.professor_name = (TextView) itemView.findViewById(R.id.professor_name);
-            this.time_time = (TextView) itemView.findViewById(R.id.time_time);
-            this.add_btn = (Button) itemView.findViewById(R.id.add_btn);
+
             subject_name.setTextColor(Color.parseColor("#000000"));
             professor_name.setTextColor(Color.parseColor("#000000"));
-            time_time.setTextColor(Color.parseColor("#000000"));
-            add_btn.setTextColor(Color.parseColor("#000000"));
+
+
 
 
 

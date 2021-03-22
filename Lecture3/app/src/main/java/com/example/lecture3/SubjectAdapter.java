@@ -20,6 +20,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.CustomVi
     private ArrayList<Subject> arrayList;
     int counter_click = 0;
     String new_button_name = null;
+    String new_button_professor = null;
 
     public SubjectAdapter(ArrayList<Subject> arrayList) {
         this.arrayList = arrayList;
@@ -53,6 +54,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.CustomVi
                 String curName = holder.subject_name.getText().toString(); ///리사이클러 아이템 중 클릭한 친구의 이름을 가져온다
                 Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show(); /// curName을 짧은 시간동안 띄울 것이다
                 new_button_name = holder.subject_name.getText().toString();
+                new_button_professor = holder.professor_name.getText().toString();
                 counter_click = (counter_click + 1) % 2;
                 if(counter_click == 0){
                     holder.add_btn.setVisibility(View.INVISIBLE);
