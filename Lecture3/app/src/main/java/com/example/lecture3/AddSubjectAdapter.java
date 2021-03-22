@@ -26,7 +26,7 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
 
     public AddSubjectAdapter(ArrayList<AddSubject> arrayList, Context context) {
         this.arrayList = arrayList;
-        this.context = context;
+        this.context = context; // MainActivity context를 가져온다 (adapter은 xml과 연결되어 있지 않기 때문에 MainActivity에다가 화면을 보내줘야 한다)
     }
 
     @NonNull
@@ -34,7 +34,7 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
     /// listview 메뉴가 처음 생성될 때 생명주기를 뜻한다
     public AddSubjectAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.addsubject_item, parent, false);
-        CustomViewHolder holder = new CustomViewHolder(view);
+        CustomViewHolder holder = new CustomViewHolder(view); // adapter의 모든 내용을 다 담은 객체이다
 
         return holder;
     }
@@ -72,7 +72,7 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
             /// Adapter에서는 longclick을 눌렀을 때 listview를 삭제하는 것을 만들어 볼 것이다
 
             public boolean onLongClick(View v) {
-                AlertDialog.Builder ad = new AlertDialog.Builder((MainActivity)context);
+                AlertDialog.Builder ad = new AlertDialog.Builder((MainActivity)context); // 삭제에 대한 팝업창을 만들 것이다
 
                 ad.setIcon(R.mipmap.ic_launcher);  //다이얼로그 창에서 이미지 뷰로 조그맣게 띄울 아이콘
                 ad.setTitle("삭제하시겠습니까?");

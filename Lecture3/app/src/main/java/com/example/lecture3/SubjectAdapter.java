@@ -53,8 +53,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.CustomVi
             public void onClick(View v) {
                 String curName = holder.subject_name.getText().toString(); ///리사이클러 아이템 중 클릭한 친구의 이름을 가져온다
                 Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show(); /// curName을 짧은 시간동안 띄울 것이다
-                new_button_name = holder.subject_name.getText().toString();
-                new_button_professor = holder.professor_name.getText().toString();
+                new_button_name = holder.subject_name.getText().toString(); // 과목을 누르면 new_button_name 전역변수에 과목명이 등록된다
+                new_button_professor = holder.professor_name.getText().toString(); // 과목을 누르면 new_button_professor 전역변수에 교수님명이 등록된다
                 counter_click = (counter_click + 1) % 2;
                 if(counter_click == 0){
                     holder.add_btn.setVisibility(View.INVISIBLE);

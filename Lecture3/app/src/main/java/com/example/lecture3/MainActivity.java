@@ -74,13 +74,23 @@ public class MainActivity extends AppCompatActivity {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
-                String add_subject = subjectAdapter.new_button_name;
-                String add_professor = subjectAdapter.new_button_professor;
-                AddSubject addSubject = new AddSubject(add_subject,add_professor);
-                arrayList2.add(addSubject);
+                String add_subject = subjectAdapter.new_button_name; // slidingpanel에서 클릭한 과목명을 가져온다
+                String add_professor = subjectAdapter.new_button_professor; // slidingpanel에서 클릭한 교수명을 가져온다
+                int distinguisher = 0; // 이미 생성한 과목을 더 생성하려는 것인지 판별하는 변수이다 (1이면 이미 같은 과목명의 과목이 생성되어 있는 것이다)
+                for(int i = 0 ; i < arrayList2.size() ; i++){ // 같은 이름의 과목이 있는지 검색
+                    if(arrayList2.get(i).subject == add_subject){
+                        distinguisher = 1;
+                        break;
+                    }
+                }
+                if(distinguisher == 0) { // 과목을 추가한다
+                    AddSubject addSubject = new AddSubject(add_subject, add_professor);
+                    arrayList2.add(addSubject);
 
-                addsubjectAdapter.notifyDataSetChanged();
-
+                    addsubjectAdapter.notifyDataSetChanged();
+                }else{ // 이미 과목이 있으면 Toast 띄운다
+                    Toast.makeText(getApplicationContext(),add_subject + "는 이미 선택하셨어요!", Toast.LENGTH_SHORT).show();
+                }
 
 
             }
