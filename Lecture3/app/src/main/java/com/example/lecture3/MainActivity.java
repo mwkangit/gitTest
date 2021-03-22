@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         arrayList2 = new ArrayList<>();
 
-        addsubjectAdapter = new AddSubjectAdapter(arrayList2);
+        addsubjectAdapter = new AddSubjectAdapter(arrayList2, this);
         recyclerView2.setAdapter(addsubjectAdapter); ///담아져있는 데이터를 recyclerView에 담아줘라
 
         add_button.setOnClickListener(new View.OnClickListener() {

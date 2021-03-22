@@ -77,17 +77,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.CustomVi
 
 
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            /// 바깥에서 추가버튼을 누르면 listview가 추가 되는 것은 MainActivity 쪽에다가 구현을 할 것이다
-            /// Adapter에서는 longclick을 눌렀을 때 listview를 삭제하는 것을 만들어 볼 것이다
 
-            public boolean onLongClick(View v) {
-                remove(holder.getAdapterPosition());
-
-                return true;
-            }
-        });
     }
 
     @Override
@@ -95,15 +85,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.CustomVi
         return (null != arrayList ? arrayList.size() : 0);
     }
 
-    public void remove(int position){
-        try{
-            arrayList.remove(position);
-            notifyItemRemoved(position); /// notify는 새로고침이라는 뜻으로 listview를 지우고 새로고침 해주는 것이다
-        } catch(IndexOutOfBoundsException ex){
-            ex.printStackTrace();
-        }
 
-    }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 

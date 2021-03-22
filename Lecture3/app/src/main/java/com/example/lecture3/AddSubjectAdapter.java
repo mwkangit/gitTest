@@ -1,14 +1,18 @@
 package com.example.lecture3;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
@@ -18,9 +22,11 @@ import java.util.ArrayList;
 public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.CustomViewHolder> {
 
     private ArrayList<AddSubject> arrayList;
+    private Context context = null;
 
-    public AddSubjectAdapter(ArrayList<AddSubject> arrayList) {
+    public AddSubjectAdapter(ArrayList<AddSubject> arrayList, Context context) {
         this.arrayList = arrayList;
+        this.context = context;
     }
 
     @NonNull
@@ -66,8 +72,31 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
             /// Adapter에서는 longclick을 눌렀을 때 listview를 삭제하는 것을 만들어 볼 것이다
 
             public boolean onLongClick(View v) {
-                remove(holder.getAdapterPosition());
+                AlertDialog.Builder ad = new AlertDialog.Builder((MainActivity)context);
 
+                ad.setIcon(R.mipmap.ic_launcher);  //다이얼로그 창에서 이미지 뷰로 조그맣게 띄울 아이콘
+                ad.setTitle("삭제하시겠습니까?");
+                ad.setMessage("강민우는 킹카인가?"); //보통 질문을 한다
+
+
+                //긍정적인 버튼
+                ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override //edittext에서 값을 받아와서 아까 만든 textview에 edittext의 데이터를 옮긴다는 뜻이다
+                    public void onClick(DialogInterface dialog, int which) {
+                        remove(holder.getAdapterPosition());
+                        dialog.dismiss(); //위의 모든 코드 실행하고 현재 다이얼로그 닫는다
+
+                    }
+                });
+
+                ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+                ad.show(); //다이얼로그가 정상적으로 뜨게 해줌
                 return true;
             }
         });
