@@ -87,12 +87,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                if(distinguisher == 0) { // 과목을 추가한다
+                if(distinguisher == 0 && subjectAdapter.new_button_name != null) { // 과목을 추가한다
                     AddSubject addSubject = new AddSubject(add_subject, add_professor);
                     arrayList2.add(addSubject);
 
                     addsubjectAdapter.notifyDataSetChanged();
-                }else{ // 이미 과목이 있으면 Toast 띄운다
+                }else if(subjectAdapter.new_button_name == null){
+                    Toast.makeText(getApplicationContext(), "과목을 션택해영", Toast.LENGTH_SHORT).show();
+                }
+                else { // 이미 과목이 있으면 Toast 띄운다
                     Toast.makeText(getApplicationContext(),add_subject + "는 이미 선택했잖아여!", Toast.LENGTH_SHORT).show();
                 }
 
