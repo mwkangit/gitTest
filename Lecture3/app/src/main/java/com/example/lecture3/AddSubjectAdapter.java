@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -126,7 +127,6 @@ public class AddSubjectAdapter extends RecyclerView.Adapter<AddSubjectAdapter.Cu
             super(itemView);
             this.subject_name =(TextView) itemView.findViewById(R.id.subject_name); ///activity형 클래스 파일이 아니기 때문에 itemview를 가져온다
             this.professor_name = (TextView) itemView.findViewById(R.id.professor_name);
-
             subject_name.setTextColor(Color.parseColor("#000000"));
             professor_name.setTextColor(Color.parseColor("#000000"));
 

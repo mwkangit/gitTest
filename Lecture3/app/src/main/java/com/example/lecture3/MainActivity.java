@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Drawable drawable;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager); ///방금 만든 layoutmanager을 recyclerview로 넣어줘라
 
 
-        arrayList = new ArrayList<>();
-        /// 아까 만든 MainAdapter을 가져와서 arrayList에 값을 넣어 준 것이다
+        arrayList = new ArrayList<>(); // SubjectAdapter에 넣어줄 Arraylist이다
 
         Subject subject = new Subject("Tears", "소찬휘","자ㅏㄴ인한 여좌ㅏ라");
         Subject subject2 = new Subject("G", "S","25");
@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(subject3);
         arrayList.add(subject4);
 
-        subjectAdapter = new SubjectAdapter((arrayList));
+        //LinearLayout layout = (LinearLayout) findViewById(R.id.dragView);
+
+        subjectAdapter = new SubjectAdapter(arrayList);
         subjectAdapter.notifyDataSetChanged();
 
         recyclerView.setAdapter(subjectAdapter); ///담아져있는 데이터를 recyclerView에 담아줘라
@@ -70,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutManager2 = new LinearLayoutManager(this);
         recyclerView2.setLayoutManager(linearLayoutManager2); ///방금 만든 layoutmanager을 recyclerview로 넣어줘라
 
-        arrayList2 = new ArrayList<>();
+        arrayList2 = new ArrayList<>(); // AddSubjectAdapter에 넣어줄 Arraylist이다
+
+
 
         addsubjectAdapter = new AddSubjectAdapter(arrayList2, this);
         recyclerView2.setAdapter(addsubjectAdapter); ///담아져있는 데이터를 recyclerView에 담아줘라
@@ -78,16 +82,29 @@ public class MainActivity extends AppCompatActivity {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
-                String add_subject = subjectAdapter.new_button_name; // slidingpanel에서 클릭한 과목명을 가져온다
-                String add_professor = subjectAdapter.new_button_professor; // slidingpanel에서 클릭한 교수명을 가져온다
-                int distinguisher = 0; // 이미 생성한 과목을 더 생성하려는 것인지 판별하는 변수이다 (1이면 이미 같은 과목명의 과목이 생성되어 있는 것이다)
-                for(int i = 0 ; i < arrayList2.size() ; i++){ // 같은 이름의 과목이 있는지 검색
-                    if(arrayList2.get(i).subject == add_subject){
-                        distinguisher = 1;
-                        break;
+                ArrayList<AddSubject> Add_Arraylist = new ArrayList<>(); // SubjectAdapter에서 클릭한 과목들을 AddSubjectAdapter에 보내줄 Arraylist이다
+                Add_Arraylist.addAll(subjectAdapter.Add_Arraylist); // SubjectAdapter에 있는 Add_Arraylist를 MainActivity에 있는 동일한 이름의 Add_Arraylist에 복사한다 (addAll() 함수로 깊은 복사를 실행한다)
+
+                //String add_subject = subjectAdapter.new_button_name; // slidingpanel에서 클릭한 과목명을 가져온다
+                //String add_professor = subjectAdapter.new_button_professor; // slidingpanel에서 클릭한 교수명을 가져온다
+
+                //int distinguisher = 0; // 이미 생성한 과목을 더 생성하려는 것인지 판별하는 변수이다 (1이면 이미 같은 과목명의 과목이 생성되어 있는 것이다)
+                for(int i = 0 ; i < arrayList2.size() ; i++){ // 이미 같은 과목을 화면에 띄웠는지 검사한다
+                    for(int j = 0 ; j < Add_Arraylist.size() ; j++){
+                        if(arrayList2.get(i).subject == Add_Arraylist.get(j).subject) {
+                            Toast.makeText(getApplicationContext(),Add_Arraylist.get(j).subject + "는 이미 선택했잖아여!", Toast.LENGTH_SHORT).show();
+                            Add_Arraylist.remove(j); // 이미 과목이 있으면 MainActivity의 Add_Arraylist에서 제거한다
+                            break;
+                        }
                     }
                 }
-                if(distinguisher == 0 && subjectAdapter.new_button_name != null) { // 과목을 추가한다
+                if(Add_Arraylist != null){ // 앞의 검사를 마치고 Add_Arraylist에 남아있는 것이 있다면 AddSubjectAdapter에 추가해준다
+                    for(int i = 0 ; i < Add_Arraylist.size() ; i++) {
+                        arrayList2.add(Add_Arraylist.get(i));
+                        addsubjectAdapter.notifyDataSetChanged(); // 새로고침
+                    }
+                }
+                /*if(distinguisher == 0 && subjectAdapter.new_button_name != null) { // 과목을 추가한다
                     AddSubject addSubject = new AddSubject(add_subject, add_professor);
                     arrayList2.add(addSubject);
 
@@ -97,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else { // 이미 과목이 있으면 Toast 띄운다
                     Toast.makeText(getApplicationContext(),add_subject + "는 이미 선택했잖아여!", Toast.LENGTH_SHORT).show();
-                }
+                }*/
 
 
             }
